@@ -1,0 +1,31 @@
+name: Reuseble Workflow
+on:
+  workflow_call:
+    inputs:
+      name:
+        description: 'Name of the workflow'
+        required: false
+        default: 'nivas'
+        type: string
+    secrets:
+      access_token:
+        description: 'Secrets to be used in the workflow'
+        required: true
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - run: ls -l
+
+  log-contex-and-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display Github Context
+        run: |
+          echo "GITHUB_CONTEXT: ${{ toJson(github) }}"
+          echo "INPUTS: ${{ toJson(inputs) }}"
+          echo "NAME: ${{ inputs.name }}"
+          echo "SECRETS: ${{ secrets.access_token }}"
