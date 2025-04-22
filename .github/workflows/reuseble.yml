@@ -29,3 +29,5 @@ jobs:
           echo "INPUTS: ${{ toJson(inputs) }}"
           echo "NAME: ${{ inputs.name }}"
           echo "SECRETS: ${{ secrets.access_token }}"
+  calling-a-reuseble-nested-workflow:
+    uses: learn-cloud-gitactions/FirstWorkflow/.github/workflows/reuseble-workflow.yml@master
